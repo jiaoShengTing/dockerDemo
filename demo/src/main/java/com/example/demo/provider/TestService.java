@@ -9,7 +9,10 @@ import java.util.Map;
 @RequestMapping("test")
 public interface TestService {
     @ApiOperation(value = "查询各级单位上报情况", notes = "查询各级单位上报情况", httpMethod = "GET")
-    @ApiImplicitParam(name="level",value="要查询到几级单位",dataType="Integer", paramType = "query")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name="level",value="要查询到几级单位",dataType="Integer", paramType = "query"),
+            @ApiImplicitParam(name="year",value="指定年份，不填则为查询全部",dataType="String", paramType = "query")
+    })
     @RequestMapping("testQuery")
-    Map<String, Map<String,String>> testQuery(Integer level);
+    Map<String, Map<String,String>> testQuery(Integer level,String year);
 }
